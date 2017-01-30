@@ -1,27 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dinner planner</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dinner planner</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <!-- Should be as: https://kth-csc.mybalsamiq.com/projects/dh2642-vt17-lab2assignment-web/grid -->
+        <!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
 
-  </head>
-  <body>
-	<div class="container">
-		<h1>Dinner planner</h1>
-		<div id="exampleView">
-			<div>
-				Number of guests: <span id="numberOfGuests"></span>
-			</div>
-			<div>
-          <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-				<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
-			</div>
-		</div>
+    </head>
+    <body>
+
+            <!-- Full Width Image Header -->
+            <header class="header-image">
+                <div class="container-fluid">
+                    <div class="top-bar row">
+                        <div class="top-bar-brand col-md-3">
+                            <h1>HOMELETTE</h1>
+                        </div>
+                        <div class="top-bar-brand col-md-9 text-left text-down">
+                            <h4>From the best chefs in the world directly to your kitchen</h4>
+                        </div>
+                    </div>
+                    <div class="headline-box row">
+                        <div class="headline-content-box col-md-6">
+                            <h1 class="text-center">A Home Dinner Service</h1>
+                            <hr />
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <button class="btn btn-default text-center mt-15" onclick="gotopage('dinner.html')">Create new dinner</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+            <!--<h1>Dinner planner</h1>
+            <div id="exampleView">
+                <div>
+                    Number of guests: <span id="numberOfGuests"></span>
+                </div>
+                <div>
+              <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
+                    <button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
+                </div>
+            </div>-->
+            <div class="container-fluid">
+                <footer>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <p>Copyright © Stefan Milenkovic & Joaquín Sánchez-Valiente 2017</p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
 	</div>
 
     <!-- jQuery -->

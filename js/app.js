@@ -6,3 +6,10 @@ $(function() {
 	var exampleView = new ExampleView($("#exampleView"));
 
 });
+
+function gotopage(url){
+    if(!url){
+        return;
+    }
+    window.location.href = url;
+}
