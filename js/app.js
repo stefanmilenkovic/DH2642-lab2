@@ -3,13 +3,16 @@ $(function() {
 	var model = new DinnerModel();
 	
 	//And create the needed controllers and views
-	var exampleView = new ExampleView($("#exampleView"));
+	var exampleView = new ExampleView($("#dinner-start-view"));
+
+    //And create the needed controllers and views
+    var startView = new StartView($("#dinner-start-view"));
 
 });
 
-function gotopage(url){
-    if(!url){
-        return;
-    }
-    window.location.href = url;
+function switchCurrentView (newViewId){
+    $(".view-element").hide();
+    $("#" + newViewId).show();
 }
+
+switchCurrentView('dinner-start-view');

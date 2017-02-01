@@ -13,13 +13,13 @@
 
     </head>
     <body>
-
-            <!-- Full Width Image Header -->
+        <!-- Full Width Image Header -->
+        <div class="view-element" id="start-page-view">
             <header class="header-image">
                 <div class="container-fluid">
-                    <div class="top-bar row">
+                    <div class="top-bar row top-bar-yellow">
                         <div class="top-bar-brand col-md-3">
-                            <h1>HOMELETTE</h1>
+                            <h1 onclick="switchCurrentView('start-page-view')">HOMELETTE</h1>
                         </div>
                         <div class="top-bar-brand col-md-9 text-left text-down">
                             <h4>From the best chefs in the world directly to your kitchen</h4>
@@ -33,32 +33,81 @@
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <button class="btn btn-default text-center mt-15" onclick="gotopage('dinner.html')">Create new dinner</button>
+                            <button class="btn btn-default text-center mt-15" onclick="switchCurrentView('dinner-start-view')">Create new dinner</button>
                         </div>
                     </div>
                 </div>
             </header>
+        </div>
 
-
-            <!--<h1>Dinner planner</h1>
-            <div id="exampleView">
-                <div>
-                    Number of guests: <span id="numberOfGuests"></span>
+        <!-- View for start of dinner creation -->
+        <div class="container-fluid view-element" id="dinner-start-view" style="display:none;">
+            <div class="top-bar row top-bar-gray">
+                <div class="top-bar-brand col-md-3">
+                    <h1 class="text-center" onclick="switchCurrentView('start-page-view')">HOMELETTE</h1>
                 </div>
-                <div>
-              <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-                    <button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
+                <div class="top-bar-brand col-md-9 text-left text-down">
+                    <h4>From the best chefs in the world directly to your kitchen</h4>
                 </div>
-            </div>-->
-            <div class="container-fluid">
-                <footer>
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <p>Copyright © Stefan Milenkovic & Joaquín Sánchez-Valiente 2017</p>
+            </div>
+            <div class="row dinner-row">
+                <div class="col-md-3 col-xs-6 dinner-column dinner-column-status">
+                    <div class="row p-25 dinner-name-row">
+                        <form class="form-horizontal">
+                            <h3 class="m-t-0">My Dinner</h3>
+                            <div class="form-group form-inline">
+                                <label class="control-label col-sm-3" for="sel1">People:</label>
+                                <select class="form-control col-sm-9" id="sel1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row header-row">
+                        <div class="col-md-6 text-left p-l-30">Dish Name</div>
+                        <div class="col-md-6 text-left">Cost</div>
+                    </div>
+                    <div class="row chosen-dishes-row">
+                        <div class="col-md-12 chosen-dish">
+                            <div class="col-md-6 text-left">Pending</div>
+                            <div class="col-md-6 text-left">0</div>
                         </div>
                     </div>
-                </footer>
+                    <hr>
+                    <div class="row total-price-row">
+                        <div class="col-md-6 col-md-offset-6 text-left">
+                            SEK 77.20
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 m-t-15">
+                            <button class="btn btn-default f-w">Confirm dinner</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-xs-6 dinner-column">
+                    <div>
+                        Number of guests: <span id="numberOfGuests"></span>
+                    </div>
+                    <div>
+                        <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
+                        <button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
+                    </div>
+                </div>
+
             </div>
+        </div>
+        <div class="container-fluid">
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>Copyright © Stefan Milenkovic & Joaquín Sánchez-Valiente 2017</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
 	</div>
 
     <!-- jQuery -->
@@ -69,6 +118,7 @@
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
+    <script src="js/view/startView.js"></script>
 	<script src="js/view/exampleView.js"></script>
 	<script src="js/view/exampleViewController.js"></script>
   </body>

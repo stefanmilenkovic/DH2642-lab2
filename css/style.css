@@ -10,8 +10,14 @@
 }
 
 .top-bar{
-    background-color:rgba(212, 214, 130, 0.6);
     padding: 20px 0;
+}
+
+.top-bar.top-bar-yellow{
+    background-color:rgba(212, 214, 130, 0.6);
+}
+.top-bar.top-bar-gray{
+    background-color:rgba(168, 173, 175, 0.4);
 }
 
 .top-bar h1 {
@@ -49,8 +55,65 @@
     font-size: 16px;
 }
 
-.mt-15{
+
+.dinner-row{
+    max-height:600px;
+    overflow: auto;
+}
+
+.dinner-row{
+    border-top: 2px solid rgb(0, 0, 0);
+}
+
+.dinner-column{
+    min-height:400px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.dinner-column-status{
+    border-right: 2px solid rgb(0, 0, 0);
+}
+
+.dinner-column-status .header-row{
+    border-top: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+    background-color:rgba(168, 173, 175, 0.4);
+}
+
+.dinner-column-status .chosen-dishes-row{
+    padding:10px;
+}
+
+.dinner-column-status .chosen-dishes-row .chosen-dish{
+
+}
+
+.dinner-column-status hr{
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.p-25{
+    padding: 25px;
+}
+
+.m-t-0{
+    margin-top:0px;
+}
+
+.m-t-15{
     margin-top:15px;
+}
+
+.p-l-30{
+    padding-left:30px;
+}
+
+.f-w{
+    width:100%;
+}
+
+select{
+    min-width:100px;
 }
 
 .btn-default{
