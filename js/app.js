@@ -15,4 +15,4 @@ function switchCurrentView (newViewId){
     $("#" + newViewId).show();
 }
 
-switchCurrentView('dinner-start-view');
+switchCurrentView('start-page-view');
