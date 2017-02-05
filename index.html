@@ -56,12 +56,20 @@
                         <form class="form-horizontal">
                             <h3 class="m-t-0">My Dinner</h3>
                             <div class="form-group form-inline">
-                                <label class="control-label col-sm-3" for="sel1">People:</label>
-                                <select class="form-control col-sm-9" id="sel1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                <label class="control-label col-sm-3" for="number-of-guests">People:</label>
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" id="decrement-button">
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" id="number-of-guests" disabled class="form-control input-number" value="1">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" id="increment-button">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -119,7 +127,9 @@
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
     <script src="js/view/startView.js"></script>
+    <script src="js/view/dinnerView.js"></script>
 	<script src="js/view/exampleView.js"></script>
 	<script src="js/view/exampleViewController.js"></script>
+    <script src="js/view/dinnerViewController.js"></script>
   </body>
 </html>
