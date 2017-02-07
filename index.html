@@ -19,7 +19,7 @@
                 <div class="container-fluid">
                     <div class="top-bar row top-bar-yellow">
                         <div class="top-bar-brand col-md-3">
-                            <h1 onclick="switchCurrentView('start-page-view')">HOMELETTE</h1>
+                            <h1>HOMELETTE</h1>
                         </div>
                         <div class="top-bar-brand col-md-9 text-left text-down">
                             <h4>From the best chefs in the world directly to your kitchen</h4>
@@ -33,7 +33,7 @@
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <button class="btn btn-default text-center mt-15" onclick="switchCurrentView('dinner-start-view')">Create new dinner</button>
+                            <button id="show-start-dinner-view-button" class="btn btn-default text-center mt-15">Create new dinner</button>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         <div class="container-fluid view-element" id="dinner-start-view" style="display:none;">
             <div class="top-bar row top-bar-gray">
                 <div class="top-bar-brand col-md-3">
-                    <h1 class="text-center" onclick="switchCurrentView('start-page-view')">HOMELETTE</h1>
+                    <h1 class="text-center clickable" id="show-start-page-view-button">HOMELETTE</h1>
                 </div>
                 <div class="top-bar-brand col-md-9 text-left text-down">
                     <h4>From the best chefs in the world directly to your kitchen</h4>
@@ -95,16 +95,35 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 col-xs-6 dinner-column">
-                    <div>
-                        Number of guests: <span id="numberOfGuests"></span>
+                <div id="dish-search-box" class="col-md-9 col-xs-6 dinner-column p-0">
+                    <div class="col-md-12 search-row p-25">
+                        <h3 class="m-t-0">Select dish</h3>
+                        <hr />
+                        <form class="form-horizontal">
+                            <div class="col-md-4 col-xs-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter key words">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Search</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-6">
+                                <select class="form-control" id="sel1">
+                                    <option>starter</option>
+                                    <option>main</option>
+                                    <option>desert</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                    <div>
-                        <button id="minusGuest" class="btn"><span class="glyphicon glyphicon-minus"></span></button>
-                        <button id="plusGuest" class="btn"><span class="glyphicon glyphicon-plus"></span></button>
-                    </div>
+                    <ul id="dish-list-box" class="col-md-12 dish-list-row p-25">
+                    </ul>
                 </div>
+                <!-- Box with details about one dish -->
+                <div id="dish-details-box" class="col-md-9 col-xs-6 dinner-column p-0">
 
+                </div>
             </div>
         </div>
         <div class="container-fluid">

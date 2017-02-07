@@ -27,22 +27,21 @@ $(function() {
     var startView = new StartView($("#dinner-start-view"));
 
     var dinnerView = new DinnerView(model, {
+        'showStartPageViewButton': $("#show-start-page-view-button"),
+        'showStartDinnerViewButton': $("#show-start-dinner-view-button"),
         'dinnerStartViewElement' : $("#dinner-start-view"),
         'numberOfGuestsInput' : $('#number-of-guests'),
-        'addButton' : $('#increment-button'),
-        'delButton' : $('#decrement-button')
+        'incrementGuestButton' : $('#increment-button'),
+        'decrementGuestButton' : $('#decrement-button'),
+        'dishListBox': $('#dish-list-box')
     });
 
     var dinnerViewController = new DinnerViewController(model, dinnerView);
 
     dinnerView.show();
+    dinnerView.buildDishList();
 
 });
 
-
-function switchCurrentView (newViewId){
-    $(".view-element").hide();
-    $("#" + newViewId).show();
-}
-
-switchCurrentView('start-page-view');
+//switchCurrentView('start-page-view');
+switchCurrentView('dinner-start-view');
