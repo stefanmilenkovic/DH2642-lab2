@@ -131,13 +131,28 @@
 
 .dinner-column .dish-list-row .dish-box .dish-description{
     font-size:1em;
-    height:150px;
+    height:90px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 6; /* number of lines to show */
     line-height: 15px;        /* fallback */
+}
+
+
+/* Dish description */
+#dish-description-view .img-wrapper img{
+    max-height:200px;
+}
+
+#dish-description-view .ingredients-column{
+    background-color:rgba(212, 214, 130, 0.6);
+    border: 2px solid rgb(0, 0, 0);
+}
+
+#dish-description-view .ingredients-column ul{
+    list-style: none;
 }
 
 .p-25{

@@ -1,9 +1,9 @@
-function Event(sender) {
+function Observer(sender) {
     this._sender = sender;
     this._listeners = [];
 }
 
-Event.prototype = {
+Observer.prototype = {
     attach : function (listener) {
         this._listeners.push(listener);
     },
@@ -21,27 +21,39 @@ $(function() {
 	var model = new DinnerModel();
 	
 	//And create the needed controllers and views
-	var exampleView = new ExampleView($("#dinner-start-view"));
-
-    //And create the needed controllers and views
-    var startView = new StartView($("#dinner-start-view"));
-
-    var dinnerView = new DinnerView(model, {
-        'showStartPageViewButton': $("#show-start-page-view-button"),
-        'showStartDinnerViewButton': $("#show-start-dinner-view-button"),
-        'dinnerStartViewElement' : $("#dinner-start-view"),
-        'numberOfGuestsInput' : $('#number-of-guests'),
-        'incrementGuestButton' : $('#increment-button'),
-        'decrementGuestButton' : $('#decrement-button'),
-        'dishListBox': $('#dish-list-box')
+	var dinnerView = new DinnerView(model, {
+        'dinnerViewElement': $("#dinner-view"),
+        'showStartPageViewButton': $("#show-start-page-view-button")
     });
 
-    var dinnerViewController = new DinnerViewController(model, dinnerView);
+    //And create the needed controllers and views
+    var startView = new StartView(model, {
+        'showStartDinnerViewButton': $("#show-start-dinner-view-button")
+    });
 
-    dinnerView.show();
-    dinnerView.buildDishList();
+    var dinnerStatusView = new DinnerStatusView(model, {
+        'dinnerStatusViewElement' : $("#dinner-status-view"),
+        'numberOfGuestsInput' : $('#number-of-guests'),
+        'incrementGuestButton' : $('#increment-button'),
+        'decrementGuestButton' : $('#decrement-button')
+    });
+
+    var dishListView = new DishListView(model, {
+        'dishListViewElement': $("#dish-list-view"),
+        'dishListBox' : $("#dish-list-box"),
+        'dishSearchButton': $("#dish-search-button"),
+        'dishSearchKeyWords': $("#dish-search-key-words"),
+        'dishSearchType': $("#dish-search-type")
+    });
+
+    var dishDescriptionView = new DishDesriptionView(model, {
+        'dishDescriptionViewElement': $("#dish-description-view"),
+        'backToSelectDishButton' : $("#back-to-select-dish-button")
+    });
+
+    var dinnerStatusViewController = new DinnerStatusViewController(model, dinnerStatusView);
+    var dishListViewController = new DishListViewController(model, dishListView);
+
+    var stateController = new StateController(model, startView, dinnerView, dinnerStatusView, dishListView, dishDescriptionView);
 
 });
-
-//switchCurrentView('start-page-view');
-switchCurrentView('dinner-start-view');

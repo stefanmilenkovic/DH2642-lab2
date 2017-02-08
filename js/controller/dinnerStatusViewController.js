@@ -1,5 +1,5 @@
 //ExampleView Object constructor
-var DinnerViewController = function (model, view) {
+var DinnerStatusViewController = function (model, view) {
     this._model = model;
     this._view = view;
 

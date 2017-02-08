@@ -14,8 +14,38 @@ var DinnerModel = function() {
 		return this.numberOfGuests;
 	};
 
-    this.guestAdded = new Event(this);
-    this.guestRemoved = new Event(this);
+    this.guestAdded = new Observer(this);
+    this.guestRemoved = new Observer(this);
+    this.viewChanged = new Observer(this);
+    this.currentView = 1;
+    this.currentDishIndex = -1;
+    this.dishFilterKeywords = "";
+    this.dishFilterType = "";
+
+    this.setDishFilterKeywords = function(newDishFilterKeywords){
+    	this.dishFilterKeywords = newDishFilterKeywords;
+	};
+
+    this.getDishFilterKeywords = function(){
+    	return this.dishFilterKeywords;
+	};
+
+    this.setDishFilterType = function(newDishFilterType){
+        this.dishFilterType = newDishFilterType;
+    };
+
+    this.getDishFilterType = function(){
+        return this.dishFilterType;
+    };
+
+    this.setCurrentDishIndex = function (newCurrentDishIndex) {
+        this.currentDishIndex = newCurrentDishIndex;
+    };
+
+    this.setCurrentView = function (newCurrentView) {
+    	this.currentView = newCurrentView;
+		this.viewChanged.notify(this.currentView);
+    };
 
 	this.incrementNumberOfGuests = function(){
         this.numberOfGuests += 1;
@@ -67,19 +97,19 @@ var DinnerModel = function() {
 	this.getAllDishesWithFiltering = function (type,filter) {
 	  return dishes.filter(function(dish) {
 		var found = true;
-		if(filter){
+		if(filter && filter !== ""){
 			found = false;
 			dish.ingredients.forEach(function(ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
+				if(ingredient.name.toLowerCase().indexOf(filter)!=-1) {
 					found = true;
 				}
 			});
-			if(dish.name.indexOf(filter) != -1)
+			if(dish.name.toLowerCase().indexOf(filter) != -1)
 			{
 				found = true;
 			}
 		}
-	  	return dish.type == type && found;
+	  	return found && (type == "all" || dish.type == type);
 	  });	
 	};
 

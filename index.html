@@ -41,7 +41,7 @@
         </div>
 
         <!-- View for start of dinner creation -->
-        <div class="container-fluid view-element" id="dinner-start-view" style="display:none;">
+        <div id="dinner-view" class="container-fluid" style="display:none;">
             <div class="top-bar row top-bar-gray">
                 <div class="top-bar-brand col-md-3">
                     <h1 class="text-center clickable" id="show-start-page-view-button">HOMELETTE</h1>
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="row dinner-row">
-                <div class="col-md-3 col-xs-6 dinner-column dinner-column-status">
+                <div id="dinner-status-view" class="col-md-3 col-xs-6 dinner-column dinner-column-status">
                     <div class="row p-25 dinner-name-row">
                         <form class="form-horizontal">
                             <h3 class="m-t-0">My Dinner</h3>
@@ -95,24 +95,25 @@
                         </div>
                     </div>
                 </div>
-                <div id="dish-search-box" class="col-md-9 col-xs-6 dinner-column p-0">
+                <div id="dish-list-view" class="col-md-9 col-xs-6 dinner-column p-0">
                     <div class="col-md-12 search-row p-25">
                         <h3 class="m-t-0">Select dish</h3>
                         <hr />
                         <form class="form-horizontal">
                             <div class="col-md-4 col-xs-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Enter key words">
+                                    <input id="dish-search-key-words" type="text" class="form-control" placeholder="Enter key words">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">Search</button>
+                                        <button id="dish-search-button" class="btn btn-default" type="button">Search</button>
                                     </span>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-6">
-                                <select class="form-control" id="sel1">
-                                    <option>starter</option>
-                                    <option>main</option>
-                                    <option>desert</option>
+                                <select id="dish-search-type" class="form-control" id="sel1">
+                                    <option value="all">all</option>
+                                    <option value="starter">starter</option>
+                                    <option value="main dish">main</option>
+                                    <option value="dessert">dessert</option>
                                 </select>
                             </div>
                         </form>
@@ -120,12 +121,50 @@
                     <ul id="dish-list-box" class="col-md-12 dish-list-row p-25">
                     </ul>
                 </div>
-                <!-- Box with details about one dish -->
-                <div id="dish-details-box" class="col-md-9 col-xs-6 dinner-column p-0">
-
+                <div id="dish-description-view" class="col-md-9 col-xs-6 dinner-column p-0">
+                    <div class="col-md-6 p-25">
+                        <h3 class='m-t-0 text-center'>Description dish</h3>
+                        <div class="row">
+                            <div class='img-wrapper col-md-8 col-md-offset-2'>
+                                <img class='f-w' src='images/meatballs.jpg'>
+                            </div>
+                        </div>
+                        <div class="row m-t-15">
+                            <p class="text-center">Loooong description</p>
+                        </div>
+                        <div class="row m-t-15">
+                            <div class="col-md-4">
+                                <button id="back-to-select-dish-button" class="btn btn-default f-w">Back to select dish</button>
+                            </div>
+                        </div>
+                        <h3 class='text-center'>Preparation</h3>
+                        <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <div class="col-md-6 p-25 ingredients-column">
+                        <h3 class="m-t-0">Ingredients for 4 people</h3>
+                        <hr />
+                        <ul class="p-0">
+                            <li class="row">
+                                <div class="col-md-2">2 tbsp</div>
+                                <div class="col-md-6">Olive oil</div>
+                                <div class="col-md-2">SEK</div>
+                                <div class="col-md-2">20.00</div>
+                            </li>
+                        </ul>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button class="btn btn-default f-w">Confirm dish</button>
+                            </div>
+                            <div class="col-md-4">&nbsp;</div>
+                            <div class="col-md-2 col-md-offset-4">SEK</div>
+                            <div class="col-md-2">20.00</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="container-fluid">
             <footer>
                 <div class="row">
@@ -147,8 +186,13 @@
 	<script src="js/model/dinnerModel.js"></script>
     <script src="js/view/startView.js"></script>
     <script src="js/view/dinnerView.js"></script>
+    <script src="js/view/dinnerStatusView.js"></script>
+    <script src="js/view/dishListView.js"></script>
+    <script src="js/view/dishDescriptionView.js"></script>
 	<script src="js/view/exampleView.js"></script>
-	<script src="js/view/exampleViewController.js"></script>
-    <script src="js/view/dinnerViewController.js"></script>
+    <script src="js/controller/stateController.js"></script>
+	<script src="js/controller/exampleViewController.js"></script>
+    <script src="js/controller/dinnerStatusViewController.js"></script>
+    <script src="js/controller/dishListViewController.js"></script>
   </body>
 </html>

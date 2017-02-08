@@ -1,13 +1,21 @@
 //StartView Object constructor
-var StartView = function (container) {
+var StartView = function (model, elements) {
 
-    // Get all the relevant elements of the view (ones that show data
-    // and/or ones that responed to interaction)
-    /*this.numberOfGuests = container.find("#numberOfGuests");
-    this.plusButton = container.find("#plusGuest");
-    this.minusButton = container.find("#minusGuest");
+    this._model = model;
+    this._elements = elements;
+    var _this = this;
 
-    this.numberOfGuests.html("Hello World");*/
+    this._elements.showStartDinnerViewButton.click(function () {
+        _this._model.setCurrentView(2);
+    });
 
-}
+    this.show = function(){
+        $("#start-page-view").show();
+    };
+
+    this.hide = function(){
+        $("#start-page-view").hide();
+    };
+
+};
 
