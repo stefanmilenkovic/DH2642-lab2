@@ -13,7 +13,7 @@ var DishListView = function(model, elements) {
         //Build html
         for (dishIndex in dishes) {
             var dishHtml = "<li class='col-md-2 col-xs-4 pull-left p-5 m-b-15 dish-box'>\n" +
-                "<div class='img-wrapper center-block dish-box-click' id='dish-box-"+dishIndex+"'>\n" +
+                "<div class='img-wrapper center-block dish-box-click' id='dish-box-"+dishes[dishIndex].id+"'>\n" +
                     "<img class='f-w' src='images/"+dishes[dishIndex].image+"'>\n" +
                     "<div class='img-title text-center'>"+dishes[dishIndex].name+"</div>\n" +
                 "</div>\n" +
@@ -27,7 +27,7 @@ var DishListView = function(model, elements) {
         $(".dish-box-click").click(function () {
             var clickedDishIdText = this.id;
             var clickedDishId = parseInt(clickedDishIdText.substring(9));
-            _this._model.setCurrentDishIndex(clickedDishId);
+            _this._model.setCurrentDishId(clickedDishId);
             _this._model.setCurrentView(3);
         });
     };

@@ -8,7 +8,7 @@
 
         <!-- Should be as: https://kth-csc.mybalsamiq.com/projects/dh2642-vt17-lab2assignment-web/grid -->
         <!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 
     </head>
@@ -74,24 +74,24 @@
                         </form>
                     </div>
                     <div class="row header-row">
-                        <div class="col-md-6 text-left p-l-30">Dish Name</div>
-                        <div class="col-md-6 text-left">Cost</div>
+                        <div class="col-md-1 text-left p-l-30">&nbsp;</div>
+                        <div class="col-md-6 text-left">Dish Name</div>
+                        <div class="col-md-4 text-left">Cost</div>
                     </div>
-                    <div class="row chosen-dishes-row">
-                        <div class="col-md-12 chosen-dish">
+                    <ul class="chosen-dishes-list p-0">
+                        <li class="row chosen-dishes-row">
+                            <div class="col-md-1 text-left p-l-30">0</div>
                             <div class="col-md-6 text-left">Pending</div>
-                            <div class="col-md-6 text-left">0</div>
-                        </div>
-                    </div>
+                            <div class="col-md-3 text-left">0 SEK</div>
+                        </li>
+                    </ul>
                     <hr>
                     <div class="row total-price-row">
-                        <div class="col-md-6 col-md-offset-6 text-left">
-                            SEK 77.20
-                        </div>
+                        <div class="col-md-5 col-md-offset-7 text-left total-price-text p-l-30">0 SEK</div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3 m-t-15">
-                            <button class="btn btn-default f-w">Confirm dinner</button>
+                            <button id="confirm-dinner-button" class="btn btn-default f-w">Confirm dinner</button>
                         </div>
                     </div>
                 </div>
@@ -123,14 +123,14 @@
                 </div>
                 <div id="dish-description-view" class="col-md-9 col-xs-6 dinner-column p-0">
                     <div class="col-md-6 p-25">
-                        <h3 class='m-t-0 text-center'>Description dish</h3>
+                        <h3 class='m-t-0 text-center description-title'>&nbsp;</h3>
                         <div class="row">
                             <div class='img-wrapper col-md-8 col-md-offset-2'>
-                                <img class='f-w' src='images/meatballs.jpg'>
+                                <img class='f-w description-image' src='images/meatballs.jpg'>
                             </div>
                         </div>
                         <div class="row m-t-15">
-                            <p class="text-center">Loooong description</p>
+                            <p class="text-center description-text">&nbsp;</p>
                         </div>
                         <div class="row m-t-15">
                             <div class="col-md-4">
@@ -141,26 +141,52 @@
                         <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                     <div class="col-md-6 p-25 ingredients-column">
-                        <h3 class="m-t-0">Ingredients for 4 people</h3>
+                        <h3 class="m-t-0 description-ingredients-title">Ingredients for 4 people</h3>
                         <hr />
-                        <ul class="p-0">
-                            <li class="row">
-                                <div class="col-md-2">2 tbsp</div>
-                                <div class="col-md-6">Olive oil</div>
-                                <div class="col-md-2">SEK</div>
-                                <div class="col-md-2">20.00</div>
-                            </li>
+                        <ul class="p-0 description-ingredients-list">
+
                         </ul>
                         <hr />
                         <div class="row">
                             <div class="col-md-4">
-                                <button class="btn btn-default f-w">Confirm dish</button>
+                                <button class="btn btn-default f-w description-confirm-dish-button">Confirm dish</button>
                             </div>
-                            <div class="col-md-4">&nbsp;</div>
                             <div class="col-md-2 col-md-offset-4">SEK</div>
-                            <div class="col-md-2">20.00</div>
+                            <div class="col-md-2 description-dish-price">&nbsp;</div>
                         </div>
                     </div>
+                </div>
+                <div id="dinner-overview-view" class="col-md-12 col-xs-12 p-0">
+                    <div class="col-md-12 overview-header-row p-25">
+                        <div class="col-md-5 col-md-offset-1">
+                            <h3 class="m-t-0 text-center overview-header-text">&nbsp;</h3>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1">
+                            <button class="btn btn-default f-w go-back-and-edit-dinner-button">Go back and edit dinner</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-8 overview-dishes p-25"></div>
+                        <div class="col-md-4 dish-price-sum p-25"></div>
+                    </div>
+                    <div class="col-md-12 overview-button-row p-25">
+                        <div class="col-md-4 col-md-offset-4 text-center">
+                            <button class="btn btn-lg btn-default f-w print-full-recipe-button">Print full recipe</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="dinner-full-recipe-view" class="col-md-12 col-xs-12 p-0">
+                    <div class="col-md-12 overview-header-row p-25">
+                        <div class="col-md-5 col-md-offset-1">
+                            <h3 class="m-t-0 text-center overview-header-text">&nbsp;</h3>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1">
+                            <button class="btn btn-default f-w go-back-and-edit-dinner-button">Go back and edit dinner</button>
+                        </div>
+                    </div>
+                    <ul class="col-md-12 full-recipe-list p-25">
+
+                    </ul>
                 </div>
             </div>
         </div>
@@ -179,7 +205,7 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
@@ -189,10 +215,12 @@
     <script src="js/view/dinnerStatusView.js"></script>
     <script src="js/view/dishListView.js"></script>
     <script src="js/view/dishDescriptionView.js"></script>
-	<script src="js/view/exampleView.js"></script>
+    <script src="js/view/dinnerOverviewView.js"></script>
+    <script src="js/view/dinnerFullRecipeView.js"></script>
     <script src="js/controller/stateController.js"></script>
 	<script src="js/controller/exampleViewController.js"></script>
     <script src="js/controller/dinnerStatusViewController.js"></script>
     <script src="js/controller/dishListViewController.js"></script>
+    <script src="js/controller/dishDescriptionViewController.js"></script>
   </body>
 </html>

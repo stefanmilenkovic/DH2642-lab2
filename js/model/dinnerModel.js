@@ -4,23 +4,14 @@ var DinnerModel = function() {
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
 	this.numberOfGuests = 1;
-
-	this.setNumberOfGuests = function(num) {
-		this.numberOfGuests = num;
-	};
-
-	// should return 
-	this.getNumberOfGuests = function() {
-		return this.numberOfGuests;
-	};
-
-    this.guestAdded = new Observer(this);
-    this.guestRemoved = new Observer(this);
+	this.numberOfGuestsUpdated = new Observer(this);
     this.viewChanged = new Observer(this);
+    this.dishMenuUpdated = new Observer(this);
     this.currentView = 1;
-    this.currentDishIndex = -1;
+    this.currentDishId = -1;
     this.dishFilterKeywords = "";
     this.dishFilterType = "";
+    this.dishesInMenu = [];
 
     this.setDishFilterKeywords = function(newDishFilterKeywords){
     	this.dishFilterKeywords = newDishFilterKeywords;
@@ -38,9 +29,13 @@ var DinnerModel = function() {
         return this.dishFilterType;
     };
 
-    this.setCurrentDishIndex = function (newCurrentDishIndex) {
-        this.currentDishIndex = newCurrentDishIndex;
+    this.setCurrentDishId = function (newCurrentDishId) {
+        this.currentDishId = newCurrentDishId;
     };
+
+    this.getCurrentDishId = function(){
+    	return this.currentDishId;
+	};
 
     this.setCurrentView = function (newCurrentView) {
     	this.currentView = newCurrentView;
@@ -49,7 +44,7 @@ var DinnerModel = function() {
 
 	this.incrementNumberOfGuests = function(){
         this.numberOfGuests += 1;
-        this.guestAdded.notify(this.numberOfGuests);
+        this.numberOfGuestsUpdated.notify(this.numberOfGuests);
 	};
 
     this.decrementNumberOfGuests = function(){
@@ -57,17 +52,21 @@ var DinnerModel = function() {
         if(this.numberOfGuests == 0){
         	this.numberOfGuests = 1;
 		}
-        this.guestRemoved.notify(this.numberOfGuests);
+        this.numberOfGuestsUpdated.notify(this.numberOfGuests);
     };
 
-	//Returns the dish that is on the menu for selected type 
-	this.getSelectedDish = function(type) {
-		//TODO Lab 2
-	};
+    this.setNumberOfGuests = function(num) {
+        this.numberOfGuests = num;
+    };
+
+    // should return
+    this.getNumberOfGuests = function() {
+        return this.numberOfGuests;
+    };
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		//TODO Lab 2
+		return this.dishesInMenu;
 	};
 
 	//Returns all ingredients for all the dishes on the menu.
@@ -77,18 +76,52 @@ var DinnerModel = function() {
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		//TODO Lab 2
+        var totalPrice = 0;
+        for (dishIndex in this.dishesInMenu) {
+            totalPrice += this.getDishesPrice(this.dishesInMenu[dishIndex]);
+        }
+        return totalPrice;
+	};
+
+	this.getDishesPrice = function(dish){
+		var totalPrice = 0;
+        for (ingredientIndex in dish.ingredients) {
+      		totalPrice += dish.ingredients[ingredientIndex].price;
+        }
+        return totalPrice * this.getNumberOfGuests();
 	};
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		//TODO Lab 2 
+		var dish = this.getDish(id);
+		//Add only if dish not already in the menu
+        if(this.getDishFromMenu(id) === undefined){
+        	this.dishesInMenu.push(dish);
+		}
+		console.log("Menu now: "+JSON.stringify(this.dishesInMenu));
+        this.dishMenuUpdated.notify(this.dishesInMenu);
+	};
+
+	this.getDishFromMenu = function(id){
+        for(key in this.dishesInMenu){
+            if(this.dishesInMenu[key].id == id) {
+                return this.dishesInMenu[key];
+            }
+        }
+        return undefined;
 	};
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-		//TODO Lab 2
+		var foundDishIndex = undefined;
+        for(key in this.dishesInMenu) {
+            if (foundDishIndex == undefined && this.dishesInMenu[key].id == id) {
+                foundDishIndex = key;
+            }
+        }
+        this.dishesInMenu.splice(foundDishIndex, 1);
+        this.dishMenuUpdated.notify(this.dishesInMenu);
 	};
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
@@ -366,7 +399,7 @@ var DinnerModel = function() {
 		},{
 		'id':202,
 		'name':'Strawberry',
-		'type':'dessert',
+		'tpe':'dessert',
 		'image':'icecream.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{ 
