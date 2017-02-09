@@ -77,7 +77,13 @@ $(function() {
         'dinnerFullRecipeViewElement': $("#dinner-full-recipe-view"),
         'overviewHeaderText': $("#dinner-full-recipe-view .overview-header-text"),
         'goBackAndEditDinnerButton': $("#dinner-full-recipe-view .go-back-and-edit-dinner-button"),
-        'fullRecipeList': $("#dinner-full-recipe-view .full-recipe-list")
+        'fullRecipeList': $("#dinner-full-recipe-view .full-recipe-list"),
+        'fullRecipefullIngredientsTitle': $("#dinner-full-recipe-view .full-recipe-ingredients-title"),
+        'fullRecipeIngredientsList': $("#dinner-full-recipe-view .full-recipe-ingredients-list"),
+        'fullRecipeIngredientsTotalPrice': $("#dinner-full-recipe-view .full-recipe-ingredients-total-price")
+
+
+
     });
 
     var stateController = new StateController(model, startView, dinnerView, dinnerStatusView, dishListView,

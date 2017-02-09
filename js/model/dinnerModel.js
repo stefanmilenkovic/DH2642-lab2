@@ -71,7 +71,22 @@ var DinnerModel = function() {
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
-		//TODO Lab 2
+		var ingredientsMap = {};
+        for (dishIndex in this.dishesInMenu) {
+            for (ingredientIndex in this.dishesInMenu[dishIndex].ingredients) {
+            	var ingredient = this.cloneObject(this.dishesInMenu[dishIndex].ingredients[ingredientIndex]);
+
+            	var ingredientInMap = ingredientsMap[ingredient.name];
+            	if(ingredientInMap !== undefined){
+                    ingredientsMap[ingredient.name].quantity = ingredientInMap.quantity + ingredient.quantity;
+                    ingredientsMap[ingredient.name].price = ingredientInMap.price + ingredient.price;
+				}
+				else{
+                    ingredientsMap[ingredient.name] = ingredient;
+				}
+            }
+        }
+        return ingredientsMap;
 	};
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -157,6 +172,10 @@ var DinnerModel = function() {
 				return dishes[key];
 			}
 		}
+	};
+
+	this.cloneObject = function(object){
+		return JSON.parse(JSON.stringify(object));
 	}
 
 

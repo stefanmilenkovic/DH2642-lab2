@@ -213,6 +213,22 @@
     border-bottom: 2px solid rgb(0, 0, 0);
 }
 
+#dinner-full-recipe-view .img-wrapper{
+    border: 2px solid rgb(0, 0, 0);
+    min-height:200px;
+}
+
+#dinner-full-recipe-view .img-wrapper img{
+    width: 100%; /* or any custom size */
+    height: 100%;
+    object-fit: contain;
+}
+
+#dinner-full-recipe-view .full-recipe-ingredients-list{
+    list-style: none;
+}
+
+
 .p-25{
     padding: 25px;
 }
@@ -242,6 +258,10 @@
 
 .m-b-15{
     margin-bottom:15px;
+}
+
+.m-b-30{
+    margin-bottom:30px;
 }
 
 .p-l-10{

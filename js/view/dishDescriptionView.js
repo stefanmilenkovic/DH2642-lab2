@@ -40,10 +40,10 @@ var DishDesriptionView = function(model, elements) {
             var ingredientPriceTotal = ingredient.price * _this._model.getNumberOfGuests();
             var ingredientHtml =
                 "<li class='row'>" +
-                    "<div class='col-md-2'>"+ingredientQuantityTotal+"</div>" +
+                    "<div class='col-md-2'>"+ingredientQuantityTotal+" " +ingredient.unit +"</div>" +
                     "<div class='col-md-6'>"+ingredient.name+"</div>" +
-                    "<div class='col-md-2'>SEK</div>" +
                     "<div class='col-md-2'>"+ingredientPriceTotal+"</div>" +
+                    "<div class='col-md-2'>SEK</div>" +
                 "</li>";
             descriptionIngredientsList.append(ingredientHtml);
         }

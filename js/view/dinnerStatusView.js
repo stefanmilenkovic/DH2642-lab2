@@ -47,7 +47,6 @@ var DinnerStatusView = function(model, elements) {
         $(".remove-dish-from-menu-button").click(function () {
             var clickedDishIdText = this.id;
             var clickedDishId = parseInt(clickedDishIdText.substring(29));
-            alert("clickedDishId: "+clickedDishId);
             _this._model.removeDishFromMenu(clickedDishId);
         });
 

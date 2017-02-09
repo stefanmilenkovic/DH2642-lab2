@@ -46,7 +46,6 @@ var DinnerOverviewView = function(model, elements) {
     });
 
     this._elements.printFullRecipeButton.click(function () {
-        alert("Heeeej");
         _this._model.setCurrentView(5);
     });
 
