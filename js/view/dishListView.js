@@ -34,10 +34,21 @@ var DishListView = function(model, elements) {
 
     //On click of the filter search button, set the search parameters and notify controller
     this._elements.dishSearchButton.click(function () {
+        _this.filterDishes();
+    });
+
+    this._elements.dishSearchKeyWords.keydown(function (e) {
+        if (e.which == 13) {
+            _this.filterDishes();
+        }
+    });
+
+    this.filterDishes = function(){
         model.setDishFilterKeywords(_this._elements.dishSearchKeyWords.val());
         model.setDishFilterType(_this._elements.dishSearchType.children("option:selected").val());
         _this.filterButtonClicked.notify();
-    });
+    };
+
 
     this.show = function(){
         this._elements.dishListViewElement.show();

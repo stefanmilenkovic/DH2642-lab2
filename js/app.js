@@ -1,21 +1,3 @@
-function Observer(sender) {
-    this._sender = sender;
-    this._listeners = [];
-}
-
-Observer.prototype = {
-    attach : function (listener) {
-        this._listeners.push(listener);
-    },
-    notify : function (args) {
-        var index;
-
-        for (index = 0; index < this._listeners.length; index += 1) {
-            this._listeners[index](this._sender, args);
-        }
-    }
-};
-
 $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
@@ -46,6 +28,7 @@ $(function() {
         'dishListViewElement': $("#dish-list-view"),
         'dishListBox' : $("#dish-list-box"),
         'dishSearchButton': $("#dish-search-button"),
+        'dishSearchForm': $("#dish-search-form"),
         'dishSearchKeyWords': $("#dish-search-key-words"),
         'dishSearchType': $("#dish-search-type")
     });
