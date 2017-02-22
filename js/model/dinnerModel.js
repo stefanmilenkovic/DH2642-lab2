@@ -13,6 +13,16 @@ var DinnerModel = function() {
     this.dishFilterType = "";
     this.dishesInMenu = [];
 
+    this.loadedDishes = [];
+    this.dishListPageSize = 100;
+    this.currentDishListIndex = 0;
+
+    this.resetDishList = function () {
+        this.loadedDishes = [];
+        this.dishListPageSize = 100;
+        this.currentDishListIndex = 0;
+    };
+
     this.setDishFilterKeywords = function(newDishFilterKeywords){
     	this.dishFilterKeywords = newDishFilterKeywords;
 	};
@@ -161,22 +171,31 @@ var DinnerModel = function() {
 	  });	
 	};
 
-    this.getAllDishes = function(){
+    this.getAllDishesOld = function(){
         return dishes;
 	};
 
 	//function that returns a dish of specific ID
 	this.getDish = function (id) {
-	  for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
+		var dishesLocal = this.getAllDishes();
+		for(key in dishesLocal){
+			if(dishesLocal[key].id == id) {
+				return dishesLocal[key];
 			}
 		}
 	};
 
 	this.cloneObject = function(object){
 		return JSON.parse(JSON.stringify(object));
-	}
+	};
+
+    this.getAllDishes = function(type, filter, callback){
+
+        setTimeout(function(){
+
+            callback(dishes);
+        }, 1000);
+    };
 
 
 	// the dishes variable contains an array of all the 

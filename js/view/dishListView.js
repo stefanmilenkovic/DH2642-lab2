@@ -6,30 +6,39 @@ var DishListView = function(model, elements) {
 
     this.filterButtonClicked = new Observer(this);
 
+    var localFunction = function (dishes) {
+        alert("Heej: "+JSON.stringify(dishes));
+    };
+
     //Build graphics for dish list based on sent list of dishes
-    this.buildDishList = function(dishes){
-        var dishListElement = this._elements.dishListBox;
-        dishListElement.html('');
-        //Build html
-        for (dishIndex in dishes) {
-            var dishHtml = "<li class='col-md-2 col-xs-4 pull-left p-5 m-b-15 dish-box'>\n" +
-                "<div class='img-wrapper center-block dish-box-click' id='dish-box-"+dishes[dishIndex].id+"'>\n" +
+    this.buildDishList = function(){
+
+        _this._model.getAllDishes(undefined, undefined, function (dishes) {
+            console.log("Dishes: "+JSON.stringify(dishes));
+
+            var dishListElement = _this._elements.dishListBox;
+            dishListElement.html('');
+            //Build html
+            for (dishIndex in dishes) {
+                var dishHtml = "<li class='col-md-2 col-xs-4 pull-left p-5 m-b-15 dish-box'>\n" +
+                    "<div class='img-wrapper center-block dish-box-click' id='dish-box-"+dishes[dishIndex].id+"'>\n" +
                     "<img class='f-w' src='images/"+dishes[dishIndex].image+"'>\n" +
                     "<div class='img-title text-center'>"+dishes[dishIndex].name+"</div>\n" +
-                "</div>\n" +
+                    "</div>\n" +
 
-                "<div class='col-md-12 m-t-15 dish-description'>"+dishes[dishIndex].description+"</div>\n"+
-            "</li>\n";
-            dishListElement.append(dishHtml);
-        }
+                    "<div class='col-md-12 m-t-15 dish-description'>"+dishes[dishIndex].description+"</div>\n"+
+                    "</li>\n";
+                dishListElement.append(dishHtml);
+            }
 
-        //Add click to every dish box to open details
-        $(".dish-box-click").click(function () {
-            var clickedDishIdText = this.id;
-            var clickedDishId = parseInt(clickedDishIdText.substring(9));
-            _this._model.setCurrentDishId(clickedDishId);
-            _this._model.setCurrentView(3);
-        });
+            //Add click to every dish box to open details
+            $(".dish-box-click").click(function () {
+                var clickedDishIdText = this.id;
+                var clickedDishId = parseInt(clickedDishIdText.substring(9));
+                _this._model.setCurrentDishId(clickedDishId);
+                _this._model.setCurrentView(3);
+            });
+        })
     };
 
     //On click of the filter search button, set the search parameters and notify controller
@@ -52,6 +61,8 @@ var DishListView = function(model, elements) {
 
     this.show = function(){
         this._elements.dishListViewElement.show();
+        //Initialize views start data
+        this.buildDishList();
     };
 
     this.hide = function(){

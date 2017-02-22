@@ -12,7 +12,4 @@ var DishListViewController = function (model, view) {
         );
         _this._view.buildDishList(filteredDishes);
     });
-
-    //Initialize views start data
-    this._view.buildDishList(_this._model.getAllDishes());
 };
