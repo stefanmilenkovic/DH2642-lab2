@@ -21,7 +21,7 @@ var DinnerOverviewView = function(model, elements) {
                 "<li class='col-md-3 col-xs-4 pull-right p-5 m-b-15 dish-box'>\n" +
                     "<div class='img-wrapper center-block dish-box-click' id='dish-box-"+dish.id+"'>\n" +
                         "<img class='f-w' src='images/"+dish.image+"'>\n" +
-                        "<div class='img-title text-center'>"+dish.name+"</div>\n" +
+                        "<div class='img-title text-center'>"+dish.title+"</div>\n" +
                     "</div>\n" +
                     "<div class='col-md-12 m-t-15 text-center dish-price-text'>"+dishPrice+" SEK</div>\n"+
                 "</li>\n";

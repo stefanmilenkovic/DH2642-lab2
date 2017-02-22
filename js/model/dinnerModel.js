@@ -162,7 +162,7 @@ var DinnerModel = function() {
 					found = true;
 				}
 			});
-			if(dish.name.toLowerCase().indexOf(filter) != -1)
+			if(dish.title.toLowerCase().indexOf(filter) != -1)
 			{
 				found = true;
 			}
@@ -176,25 +176,95 @@ var DinnerModel = function() {
 	};
 
 	//function that returns a dish of specific ID
-	this.getDish = function (id) {
-		var dishesLocal = this.getAllDishes();
+	this.getDish = function (id, successCallback, errorCallback) {
+
+        $.ajax( {
+            url: spoonacularBaseUrl + 'recipes/'+id+'/information',
+            type: "get",
+            headers: {
+                'X-Mashape-Key': apiKey
+            },
+            success: function(data) {
+            	alert(JSON.stringify(data));
+                successCallback(data);
+            },
+            error: function(error) {
+                alert(JSON.stringify(error));
+                errorCallback(error);
+            }
+        });
+
+		/*var dishesLocal = dishesTest.results;
 		for(key in dishesLocal){
 			if(dishesLocal[key].id == id) {
 				return dishesLocal[key];
 			}
-		}
+		}*/
 	};
 
 	this.cloneObject = function(object){
 		return JSON.parse(JSON.stringify(object));
 	};
 
-    this.getAllDishes = function(type, filter, callback){
+	var apiKey = 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB';
+	var spoonacularBaseUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
 
-        setTimeout(function(){
+    this.getAllDishes = function(type, filter, successCallback, errorCallback){
 
-            callback(dishes);
-        }, 1000);
+        var urlParameters = {};
+        if(type !== undefined){
+        	urlParameters.type = type;
+		}
+        if(filter !== undefined){
+            urlParameters.query = filter;
+        }
+
+        urlParameters.number = 100;
+        urlParameters.offset = 0;
+
+        $.ajax( {
+            url: spoonacularBaseUrl + 'recipes/search',
+            type: "get",
+			data: urlParameters,
+            headers: {
+                'X-Mashape-Key': apiKey
+            },
+            success: function(data) {
+                successCallback(data.baseUri, data.results);
+            },
+            error: function(error) {
+                errorCallback(error);
+            }
+        });
+    };
+
+    var dishesTest = {
+        "results": [
+            {
+                "id": 93313,
+                "title": "Pineapple Coleslaw",
+                "readyInMinutes": 15,
+                "image": "pineapple-coleslaw-2-93313.jpg",
+                "imageUrls": [
+                    "pineapple-coleslaw-2-93313.jpg"
+                ]
+            },
+            {
+                "id": 178082,
+                "title": "Pineapple Tea",
+                "readyInMinutes": 10,
+                "image": "pineapple-tea-178082.jpg",
+                "imageUrls": [
+                    "pineapple-tea-178082.jpg"
+                ]
+            }
+        ],
+        "baseUri": "https://spoonacular.com/recipeImages/",
+        "offset": 0,
+        "number": 100,
+        "totalResults": 100,
+        "processingTimeMs": 138,
+        "expires": 1488018553294
     };
 
 

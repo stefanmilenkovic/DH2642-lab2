@@ -26,8 +26,8 @@ var DinnerFullRecipeView = function(model, elements) {
                         "</div>\n" +
                     "</div>\n" +
                     "<div class='col-md-4 text-left p-l-30'>" +
-                        "<h3 class='m-t-0 text-left overview-header-text'>"+dish.name+"</h3>" +
-                        "<p class='m-t-0 text-left overview-header-text'>"+dish.description+"</p>" +
+                        "<h3 class='m-t-0 text-left overview-header-text'>"+dish.title+"</h3>" +
+                        //"<p class='m-t-0 text-left overview-header-text'>"+dish.description+"</p>" +
                     "</div>\n" +
                     "<div class='col-md-6 text-left p-l-30'>" +
                         "<h4 class='m-t-0 text-left overview-header-text'>Preparation</h4>" +

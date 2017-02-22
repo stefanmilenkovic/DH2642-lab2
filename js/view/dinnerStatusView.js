@@ -66,7 +66,7 @@ var DinnerStatusView = function(model, elements) {
         var dishName = "Pending", dishPrice = 0;
         if(dish !== undefined){
             //dishRepetition = dish.
-            dishName = dish.name;
+            dishName = dish.title;
             dishPrice = _this._model.getDishesPrice(dish);
         }
 

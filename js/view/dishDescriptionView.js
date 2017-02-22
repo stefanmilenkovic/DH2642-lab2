@@ -24,10 +24,14 @@ var DishDesriptionView = function(model, elements) {
         _this.confirmDishButtonClicked.notify();
     });
 
-    this.buildDescription = function(){
-        var dish = _this._model.getDish(_this._model.getCurrentDishId());
+    this.showLoadingDish = function(){
+
+    };
+
+    this.dishSuccess = function(dish){
         console.log("Selected dish: "+JSON.stringify(dish));
-        _this._elements.descriptionTitle.text(dish.name);
+
+        _this._elements.descriptionTitle.text(dish.title);
         _this._elements.descriptionImage.attr("src", "images/" + dish.image);
         _this._elements.descriptionText.text(dish.description);
 
@@ -40,15 +44,28 @@ var DishDesriptionView = function(model, elements) {
             var ingredientPriceTotal = ingredient.price * _this._model.getNumberOfGuests();
             var ingredientHtml =
                 "<li class='row'>" +
-                    "<div class='col-md-2'>"+ingredientQuantityTotal+" " +ingredient.unit +"</div>" +
-                    "<div class='col-md-6'>"+ingredient.name+"</div>" +
-                    "<div class='col-md-2'>"+ingredientPriceTotal+"</div>" +
-                    "<div class='col-md-2'>SEK</div>" +
+                "<div class='col-md-2'>"+ingredientQuantityTotal+" " +ingredient.unit +"</div>" +
+                "<div class='col-md-6'>"+ingredient.name+"</div>" +
+                "<div class='col-md-2'>"+ingredientPriceTotal+"</div>" +
+                "<div class='col-md-2'>SEK</div>" +
                 "</li>";
             descriptionIngredientsList.append(ingredientHtml);
         }
         _this._elements.descriptionDishPrice.text(_this._model.getDishesPrice(dish));
         _this._elements.descriptionIngredientsTitle.text("Ingredients for "+_this._model.getNumberOfGuests()+" people");
+    };
+
+    this.dishError = function(error){
+        _this.hideLoadingDish();
+        var msg = "Error on retrieval of dish list. Message: " + error.responseJSON.message;
+        alert(msg);
+        _this.showErrorInLoadingDishes(msg);
+    };
+
+    this.buildDescription = function(){
+        var dish = _this._model.getDish(
+            _this._model.getCurrentDishId(),
+            _this.dishSuccess, _this.dishError);
     };
 
     this._model.numberOfGuestsUpdated.attach(function () {
