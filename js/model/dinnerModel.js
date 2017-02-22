@@ -193,13 +193,6 @@ var DinnerModel = function() {
                 errorCallback(error);
             }
         });
-
-		/*var dishesLocal = dishesTest.results;
-		for(key in dishesLocal){
-			if(dishesLocal[key].id == id) {
-				return dishesLocal[key];
-			}
-		}*/
 	};
 
 	this.cloneObject = function(object){
