@@ -7,7 +7,7 @@ var DishListView = function(model, elements) {
     this.filterButtonClicked = new Observer(this);
 
     var localFunction = function (dishes) {
-        alert("Heej: "+JSON.stringify(dishes));
+        alert("Heej 2: "+JSON.stringify(dishes));
     };
 
     //Build graphics for dish list based on sent list of dishes
