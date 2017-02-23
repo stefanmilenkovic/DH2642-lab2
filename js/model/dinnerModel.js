@@ -9,6 +9,7 @@ var DinnerModel = function() {
     this.dishMenuUpdated = new Observer(this);
     this.currentView = 1;
     this.currentDishId = -1;
+    this.currentDish = -1;
     this.dishFilterKeywords = "";
     this.dishFilterType = "";
     this.dishesInMenu = [];
@@ -37,6 +38,14 @@ var DinnerModel = function() {
 
     this.getDishFilterType = function(){
         return this.dishFilterType;
+    };
+
+    this.setCurrentDish = function(dish){
+    	this.currentDish = dish;
+	};
+
+    this.getCurrentDish = function(){
+        return this.currentDish;
     };
 
     this.setCurrentDishId = function (newCurrentDishId) {
@@ -83,16 +92,17 @@ var DinnerModel = function() {
 	this.getAllIngredients = function() {
 		var ingredientsMap = {};
         for (dishIndex in this.dishesInMenu) {
-            for (ingredientIndex in this.dishesInMenu[dishIndex].ingredients) {
-            	var ingredient = this.cloneObject(this.dishesInMenu[dishIndex].ingredients[ingredientIndex]);
+            for (ingredientIndex in this.dishesInMenu[dishIndex].extendedIngredients) {
+            	var ingredient = this.cloneObject(this.dishesInMenu[dishIndex].extendedIngredients[ingredientIndex]);
+            	console.log("Ingredient: "+JSON.stringify(ingredient));
 
-            	var ingredientInMap = ingredientsMap[ingredient.name];
+            	var ingredientInMap = ingredientsMap[ingredient.id];
             	if(ingredientInMap !== undefined){
-                    ingredientsMap[ingredient.name].quantity = ingredientInMap.quantity + ingredient.quantity;
-                    ingredientsMap[ingredient.name].price = ingredientInMap.price + ingredient.price;
+                    ingredientsMap[ingredient.id].amount = ingredientInMap.amount + ingredient.amount;
+                    //ingredientsMap[ingredient.id].price = ingredientInMap.price + ingredient.price;
 				}
 				else{
-                    ingredientsMap[ingredient.name] = ingredient;
+                    ingredientsMap[ingredient.id] = ingredient;
 				}
             }
         }
@@ -109,19 +119,15 @@ var DinnerModel = function() {
 	};
 
 	this.getDishesPrice = function(dish){
-		var totalPrice = 0;
-        for (ingredientIndex in dish.ingredients) {
-      		totalPrice += dish.ingredients[ingredientIndex].price;
-        }
-        return totalPrice * this.getNumberOfGuests();
+        return dish.pricePerServing * this.getNumberOfGuests();
 	};
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
-	this.addDishToMenu = function(id) {
-		var dish = this.getDish(id);
+	this.addDishToMenu = function(dish) {
+
 		//Add only if dish not already in the menu
-        if(this.getDishFromMenu(id) === undefined){
+        if(this.getDishFromMenu(dish.id) === undefined){
         	this.dishesInMenu.push(dish);
 		}
 		console.log("Menu now: "+JSON.stringify(this.dishesInMenu));

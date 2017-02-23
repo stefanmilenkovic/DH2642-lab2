@@ -13,14 +13,15 @@ var DinnerOverviewView = function(model, elements) {
 
         var dishListHtml = "<ul>";
         for (dishIndex in dishesInMenu) {
-            var dish = _this._model.getDish(dishesInMenu[dishIndex].id);
-            var dishPrice = _this._model.getDishesPrice(dish);
+            var dish = dishesInMenu[dishIndex];
             console.log("Dish: " + JSON.stringify(dish));
+            var dishPrice = _this._model.getDishesPrice(dish);
+
 
             var dishHtml =
                 "<li class='col-md-3 col-xs-4 pull-right p-5 m-b-15 dish-box'>\n" +
                     "<div class='img-wrapper center-block dish-box-click' id='dish-box-"+dish.id+"'>\n" +
-                        "<img class='f-w' src='images/"+dish.image+"'>\n" +
+                        "<img class='f-w' src='"+dish.image+"'>\n" +
                         "<div class='img-title text-center'>"+dish.title+"</div>\n" +
                     "</div>\n" +
                     "<div class='col-md-12 m-t-15 text-center dish-price-text'>"+dishPrice+" SEK</div>\n"+

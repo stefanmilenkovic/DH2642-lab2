@@ -15,14 +15,14 @@ var DinnerFullRecipeView = function(model, elements) {
         fullRecipeIngredientsList.html('');
 
         for (dishIndex in dishesInMenu) {
-            var dish = _this._model.getDish(dishesInMenu[dishIndex].id);
+            var dish = dishesInMenu[dishIndex];
             console.log("Dish: " + JSON.stringify(dish));
 
             var dishHtml =
                 "<li class='row dish-recipe-row m-b-30'>\n" +
                     "<div class='col-md-2 text-left p-l-30'>" +
                         "<div class='img-wrapper center-block dish-box-click' id='dish-box-"+dish.id+"'>\n" +
-                            "<img class='f-w' src='images/"+dish.image+"'>\n" +
+                            "<img class='f-w' src='"+dish.image+"'>\n" +
                         "</div>\n" +
                     "</div>\n" +
                     "<div class='col-md-4 text-left p-l-30'>" +
@@ -31,7 +31,7 @@ var DinnerFullRecipeView = function(model, elements) {
                     "</div>\n" +
                     "<div class='col-md-6 text-left p-l-30'>" +
                         "<h4 class='m-t-0 text-left overview-header-text'>Preparation</h4>" +
-                        "<p class='m-t-0 text-left overview-header-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>" +
+                        "<p class='m-t-0 text-left overview-header-text'>"+dish.instructions+"</p>" +
                     "</div>\n" +
                 "</li>";
 
@@ -46,8 +46,8 @@ var DinnerFullRecipeView = function(model, elements) {
         for (ingredientIndex in wholeDinnerIngredients) {
             var ingredient = wholeDinnerIngredients[ingredientIndex];
             console.log("Ingredient -> : "+JSON.stringify(ingredient));
-            var ingredientQuantityTotal = (ingredient.quantity * _this._model.getNumberOfGuests()).toFixed(1);
-            var ingredientPriceTotal = ingredient.price * _this._model.getNumberOfGuests();
+            var ingredientQuantityTotal = (ingredient.amount * _this._model.getNumberOfGuests()).toFixed(1);
+            var ingredientPriceTotal = "N/A";//ingredient.price * _this._model.getNumberOfGuests();
 
             var ingredientHtml =
                 "<li class='row'>" +

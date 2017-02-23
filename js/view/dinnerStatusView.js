@@ -29,7 +29,7 @@ var DinnerStatusView = function(model, elements) {
         //Build html
         if(dishesInMenu.length > 0) {
             for (dishIndex in dishesInMenu) {
-                var dish = _this._model.getDish(dishesInMenu[dishIndex].id);
+                var dish = dishesInMenu[dishIndex];
                 console.log("Dish: " + JSON.stringify(dish));
                 var dishHtml = _this.generateOneDishItemHtml(dish);
 

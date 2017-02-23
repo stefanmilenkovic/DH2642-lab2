@@ -6,10 +6,6 @@ var DishListView = function(model, elements) {
 
     this.filterButtonClicked = new Observer(this);
 
-    var localFunction = function (dishes) {
-        alert("Heej 2: "+JSON.stringify(dishes));
-    };
-
     this.showLoadingDishes = function(){
         var dishListElement = _this._elements.dishListBox;
         dishListElement.html('');

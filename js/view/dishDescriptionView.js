@@ -31,6 +31,8 @@ var DishDesriptionView = function(model, elements) {
     this.dishSuccess = function(dish){
         console.log("Selected dish: "+JSON.stringify(dish));
 
+        _this._model.setCurrentDish(dish);
+
         _this._elements.descriptionTitle.text(dish.title);
         _this._elements.descriptionPreparationText.text(dish.instructions);
         _this._elements.descriptionImage.attr("src", dish.image);
