@@ -185,11 +185,9 @@ var DinnerModel = function() {
                 'X-Mashape-Key': apiKey
             },
             success: function(data) {
-            	alert(JSON.stringify(data));
                 successCallback(data);
             },
             error: function(error) {
-                alert(JSON.stringify(error));
                 errorCallback(error);
             }
         });

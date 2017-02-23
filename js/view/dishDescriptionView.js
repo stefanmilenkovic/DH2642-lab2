@@ -32,16 +32,17 @@ var DishDesriptionView = function(model, elements) {
         console.log("Selected dish: "+JSON.stringify(dish));
 
         _this._elements.descriptionTitle.text(dish.title);
-        _this._elements.descriptionImage.attr("src", "images/" + dish.image);
-        _this._elements.descriptionText.text(dish.description);
+        _this._elements.descriptionPreparationText.text(dish.instructions);
+        _this._elements.descriptionImage.attr("src", dish.image);
+        //_this._elements.descriptionText.text(dish.description);
 
-        var descriptionIngredientsList = this._elements.descriptionIngredientsList;
+        var descriptionIngredientsList = _this._elements.descriptionIngredientsList;
         descriptionIngredientsList.html('');
-        for (ingredientIndex in dish.ingredients) {
-            console.log("Ing: "+JSON.stringify(dish.ingredients[ingredientIndex]));
-            var ingredient = dish.ingredients[ingredientIndex];
-            var ingredientQuantityTotal = (ingredient.quantity * _this._model.getNumberOfGuests()).toFixed(1);
-            var ingredientPriceTotal = ingredient.price * _this._model.getNumberOfGuests();
+        for (ingredientIndex in dish.extendedIngredients) {
+            console.log("Ing: "+JSON.stringify(dish.extendedIngredients[ingredientIndex]));
+            var ingredient = dish.extendedIngredients[ingredientIndex];
+            var ingredientQuantityTotal = (ingredient.amount * _this._model.getNumberOfGuests()).toFixed(1);
+            var ingredientPriceTotal = "N/A";
             var ingredientHtml =
                 "<li class='row'>" +
                 "<div class='col-md-2'>"+ingredientQuantityTotal+" " +ingredient.unit +"</div>" +
@@ -51,7 +52,7 @@ var DishDesriptionView = function(model, elements) {
                 "</li>";
             descriptionIngredientsList.append(ingredientHtml);
         }
-        _this._elements.descriptionDishPrice.text(_this._model.getDishesPrice(dish));
+        _this._elements.descriptionDishPrice.text((dish.pricePerServing * _this._model.getNumberOfGuests()).toFixed(1));
         _this._elements.descriptionIngredientsTitle.text("Ingredients for "+_this._model.getNumberOfGuests()+" people");
     };
 
@@ -62,7 +63,17 @@ var DishDesriptionView = function(model, elements) {
         _this.showErrorInLoadingDishes(msg);
     };
 
+    this.resetDishDescriptionFields = function () {
+        _this._elements.descriptionTitle.text("Loading...");
+        _this._elements.descriptionImage.attr("src", "");
+        _this._elements.descriptionPreparationText.text("");
+        _this._elements.descriptionIngredientsList.html('');
+    };
+
     this.buildDescription = function(){
+
+        _this.resetDishDescriptionFields();
+
         var dish = _this._model.getDish(
             _this._model.getCurrentDishId(),
             _this.dishSuccess, _this.dishError);

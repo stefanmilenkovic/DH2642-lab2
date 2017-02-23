@@ -40,6 +40,7 @@ $(function() {
         'descriptionTitle': $("#dish-description-view .description-title"),
         'descriptionImage': $("#dish-description-view .description-image"),
         'descriptionText': $("#dish-description-view .description-text"),
+        'descriptionPreparationText': $("#dish-description-view .description-preparation-text"),
         'descriptionIngredientsTitle': $("#dish-description-view .description-ingredients-title"),
         'descriptionIngredientsList': $("#dish-description-view .description-ingredients-list"),
         'descriptionDishPrice': $("#dish-description-view .description-dish-price"),
