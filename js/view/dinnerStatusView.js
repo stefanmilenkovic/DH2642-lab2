@@ -41,7 +41,7 @@ var DinnerStatusView = function(model, elements) {
             chosenDishesList.append(dishHtml);
         }
 
-        _this._elements.totalPriceText.text(_this._model.getTotalMenuPrice() + " SEK");
+        _this._elements.totalPriceText.text((_this._model.getTotalMenuPrice()).toFixed(1) + " SEK");
 
         //Add click to every dish box to open details
         $(".remove-dish-from-menu-button").click(function () {
